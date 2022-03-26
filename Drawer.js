@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import QuizChoose from './QuizChoose'
-import Article from './Article'
+import Prawo from './Prawo'
 import QuizCategories from "./QuizCategories";
 import QuizNavigator from "./QuizNavigator";
 const Drawer = createDrawerNavigator();
@@ -26,18 +26,18 @@ export default function MyDrawer() {
 
       <Drawer.Screen
         name="prawo harcerskie"
-        component={Article}
+        component={Prawo}
         // options={{
           // drawerIcon: ({ focused }) => (<FontAwesome5 name={'btc'} size={20} color={'black'} />
       // )}} 
       />
-      <Drawer.Screen name="symbolika" component={Article} />
-      <Drawer.Screen name="ogniska" component={Article} />
-      <Drawer.Screen name="coś z wiedzy" component={Article} />
-      <Drawer.Screen name="coś z wiedzy2" component={Article} />
-      <Drawer.Screen name="coś z wiedzy3" component={Article} />
-      <Drawer.Screen name="cytaty" component={Article} />
-      <Drawer.Screen name="o nas" component={Article} />
+      <Drawer.Screen name="symbolika" component={Prawo} />
+      <Drawer.Screen name="ogniska" component={Prawo} />
+      <Drawer.Screen name="coś z wiedzy" component={Prawo} />
+      <Drawer.Screen name="coś z wiedzy2" component={Prawo} />
+      <Drawer.Screen name="coś z wiedzy3" component={Prawo} />
+      <Drawer.Screen name="cytaty" component={Prawo} />
+      <Drawer.Screen name="o nas" component={Prawo} />
     </Drawer.Navigator>
   );
 }
