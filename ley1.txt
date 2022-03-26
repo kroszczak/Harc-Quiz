@@ -1,0 +1,95 @@
+import "react-native-gesture-handler";
+import { View, Text } from "react-native";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+// import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+
+console.log('cos sie dzieje')
+function Quiz() {
+  return (
+    <View style={{marginBottom: 45, flex: 1, justifyContent: "flex-start", alignItems: "center" }}>
+      
+      <View style={{ borderBottomWidth: 1, borderColor: '#ccc', shadowColor: '#000', shadowRadius: 10, shadowOffset: '2 2', margin: 15, width: '90%', flex: 3, justifyContent: "center", alignItems: "center" }}>
+        
+        <Text style={{fontSize: 20, padding: 15, color: '#4f4f4f'}}>W którym roku odbył się pierwszy obóz skautowy?</Text>
+      </View>
+      <View style={{ margin: 15, width: '90%', flex: 1, justifyContent: "flex-start", alignItems: "center", flexDirection: 'row' }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderRadius: 15, width: 50, height: '100%', marginRight: 10}}><Text style={{fontSize: 36, color: '#555'}}>A</Text></View>
+        <View style={{ borderWidth: 1, borderRadius: 15, borderColor: '#555', borderBottomWidth: 6, borderBottomColor: '#67b441', height: '100%', flex: 1, justifyContent: "center", alignItems: "center"}}>
+          <Text style={{ fontSize: 18, color: '#444'}}>Tutaj bedzie odpowiedz</Text>
+        </View>
+      </View>
+      <View style={{ margin: 15, width: '90%', flex: 1, justifyContent: "flex-start", alignItems: "center", flexDirection: 'row' }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderRadius: 15, width: 50, height: '100%', marginRight: 10}}><Text style={{fontSize: 36, color: '#555'}}>B</Text></View>
+        <View style={{ borderWidth: 1, borderRadius: 15, borderColor: '#555', borderBottomWidth: 6, borderBottomColor: '#67b441', height: '100%', flex: 1, justifyContent: "center", alignItems: "center"}}>
+          <Text style={{ fontSize: 18, color: '#444'}}>Tutaj bedzie odpowiedz</Text>
+        </View>
+      </View>
+      <View style={{ margin: 15, width: '90%', flex: 1, justifyContent: "flex-start", alignItems: "center", flexDirection: 'row' }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderRadius: 15, width: 50, height: '100%', marginRight: 10}}><Text style={{fontSize: 36, color: '#555'}}>C</Text></View>
+        <View style={{ borderWidth: 1, borderRadius: 15, borderColor: '#555', borderBottomWidth: 6, borderBottomColor: '#67b441', height: '100%', flex: 1, justifyContent: "center", alignItems: "center"}}>
+          <Text style={{ fontSize: 18, color: '#444'}}>Tutaj bedzie odpowiedz</Text>
+        </View>
+      </View>
+      <View style={{ margin: 15, width: '90%', flex: 1, justifyContent: "flex-start", alignItems: "center", flexDirection: 'row' }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderRadius: 15, width: 50, height: '100%', marginRight: 10}}><Text style={{fontSize: 36, color: '#555'}}>D</Text></View>
+        <View style={{ borderWidth: 1, borderRadius: 15, borderColor: '#555', borderBottomWidth: 6, borderBottomColor: '#67b441', height: '100%', flex: 1, justifyContent: "center", alignItems: "center"}}>
+          <Text style={{ fontSize: 18, color: '#444'}}>Tutaj bedzie odpowiedz</Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+function Article() {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>Article Screen</Text>
+    </View>
+  );
+}
+
+const Drawer = createDrawerNavigator();
+
+function MyDrawer() {
+  return (
+    <Drawer.Navigator
+      screenOptions={{
+        drawerType: "front",
+        headerStyle: { backgroundColor: "#67b441" },
+        // headerLeft: (focused, size, color, this) => (this),
+      }}
+    >
+      <Drawer.Screen
+        name="Quiz"
+        component={Quiz}
+        // options={{
+        //   drawerIcon: () => {
+        // }}}
+      />
+      <Drawer.Screen
+        name="prawo harcerskie"
+        component={Article}
+        // options={{
+          // drawerIcon: ({ focused }) => (<FontAwesome5 name={'btc'} size={20} color={'black'} />
+      // )}} 
+      />
+      <Drawer.Screen name="symbolika" component={Article} />
+      <Drawer.Screen name="ogniska" component={Article} />
+      <Drawer.Screen name="coś z wiedzy" component={Article} />
+      <Drawer.Screen name="coś z wiedzy2" component={Article} />
+      <Drawer.Screen name="coś z wiedzy3" component={Article} />
+      <Drawer.Screen name="cytaty" component={Article} />
+      <Drawer.Screen name="o nas" component={Article} />
+    </Drawer.Navigator>
+  );
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyDrawer />
+    </NavigationContainer>
+  );
+}
