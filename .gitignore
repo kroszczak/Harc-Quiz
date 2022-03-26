@@ -62,6 +62,3 @@ buck-out/
 /.expo
 /web-build
 
-.*
-!.gitignore
-!.gitattributes
