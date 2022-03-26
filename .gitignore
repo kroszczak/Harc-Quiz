@@ -62,4 +62,5 @@ buck-out/
 /.expo
 /web-build
 
-.prettierrc.js
+.*
+!.gitignore
