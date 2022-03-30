@@ -3,6 +3,7 @@ import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import QuizChoose from './QuizChoose'
 import Prawo from './Prawo'
+import Przyrzeczenie from "./Przyrzeczenie";
 import QuizCategories from "./QuizCategories";
 import QuizNavigator from "./QuizNavigator";
 const Drawer = createDrawerNavigator();
@@ -31,7 +32,7 @@ export default function MyDrawer() {
           // drawerIcon: ({ focused }) => (<FontAwesome5 name={'btc'} size={20} color={'black'} />
       // )}} 
       />
-      <Drawer.Screen name="symbolika" component={Prawo} />
+      <Drawer.Screen name="Przyrzeczenie" component={Przyrzeczenie} />
       <Drawer.Screen name="ogniska" component={Prawo} />
       <Drawer.Screen name="coś z wiedzy" component={Prawo} />
       <Drawer.Screen name="coś z wiedzy2" component={Prawo} />

@@ -1,31 +1,45 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
-import React from "react";
+import { Animated, View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import React, { useRef, useEffect, useState } from "react";
+
+
+ 
 
 
 export default function Answer({ letter, text, getAnswer, answered, col, right, checked }) {
-    return (
-        <Pressable onPress={() => { getAnswer(letter) }} style={() => [
-            styles.answer,
-            { backgroundColor: col},
-                answered ?
-                    (letter == right ? styles.correct :
-                    (checked == letter ? styles.incorrect : styles.disabled )) : {}
-            ]}>
-        <View style={[styles.letter_view]}>
-          <Text style={styles.letter}>
-            {letter}
-          </Text>
-        </View>
-            
-        <View style={[styles.answer_view]}>
-            <Text style={styles.answer_text}>
-                {text}
-            </Text>
-        </View>
-    </Pressable>
-  )
+  const bgState = useRef(new Animated.Value(0)).current
+  useEffect(() => {
+    bgState.setValue(0)
+  }, [ text ])
+
+  const animTo1 = () => {
+  Animated.timing(
+      bgState,
+      {
+        useNativeDriver: false,
+        toValue: 1,
+        duration: 300,
+      }
+    ).start();
 }
 
+  return (
+    <TouchableWithoutFeedback onPress={() => { getAnswer(letter); animTo1() }}>
+      <Animated.View style={ styles.answer(bgState)}>
+      <View style={[styles.letter_view, answered ? { borderColor: '#eee' }:{}]}>
+        <Animated.Text style={[styles.letter(bgState), answered ? { color: '#eee' }:{}]}>
+          {letter}
+        </Animated.Text>
+      </View>
+      <View style={styles.answer_view}>
+        <Text style={[styles.answer_text, answered ? { color: '#fff' }:{}]}>
+          {text}
+        </Text>
+        </View>
+      </Animated.View>
+    </TouchableWithoutFeedback>
+  )
+}
+    
 const styles = StyleSheet.create({
   question: {
     borderBottomWidth: 1,
@@ -39,46 +53,53 @@ const styles = StyleSheet.create({
     alignItems: "center" 
     },
     
-  answer: {
-    borderRadius: 8,
-    margin: 5,
-    width: '90%',
+  answer: (bgState) => ({
+    width: '100%' ,
+    borderRadius: 40,
+    backgroundColor: bgState.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['#fff', '#6a4866'],
+    }),
+    borderWidth: 1,
+    borderColor: '#ccc',
+    margin: 7,
     flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
+    justifyContent: 'flex-start',
+    alignItems: "center",
     flexDirection: 'row'
-    },
-    answer_text: {
+  }),
+  
+  answer_text: {
         fontSize: 18,
-        color: '#444'
+        color: '#666'
     },
 
-    correct: { backgroundColor: '#67B441' },
+  correct: { backgroundColor: '#67B441'},
     incorrect: { backgroundColor: '#D0482A' },
     disabled: { opacity: 0.6 },
 
   letter_view: {
     justifyContent: 'center',
     alignItems: 'center',
-    borderTopLeftRadius: 8,
-    borderBottomLeftRadius: 8,
-    width: 50,
-    height: '100%',
+    marginHorizontal: 20,
+    height: 35,
+    width: 35,
+    borderWidth: 1,
+    borderRadius: 40,
+    borderColor: '#67B441',
     },
   
-  letter: {
-    fontSize: 42,
-    color: '#f7f7f7' 
-    },
+  letter: (bgState) => ({
+    fontSize: 20,
+    color: bgState.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['#67B441', '#eee'],
+    }),
+    }),
   
     answer_view: {
-        borderBottomColor: 'transparent',
-        backgroundColor: '#f7f7f7',
         borderColor: '#555',
-        borderTopWidth: 1,
-        borderRightWidth: 1,
-        borderTopRightRadius: 9,
-        height: '92%',
+        borderRadius: 40,
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
@@ -87,6 +108,6 @@ const styles = StyleSheet.create({
   question_text: {
     fontSize: 20,
     padding: 15,
-    color: '#4f4f4f'
+    color: '#f4f4f4'
   }
 });

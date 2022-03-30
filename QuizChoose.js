@@ -33,7 +33,7 @@ export default function QuizChoose({ navigation }) {
         return (
             <Pressable key={item.id} onPress={() => navigation.navigate('Quiz', { quiz: item  })} style={styles.QuizListItem}>
                 <Image
-                    style = {{flex: 1, borderTopLeftRadius: 5, borderTopRightRadius: 8}}
+                    style = {{flex: 1, borderTopLeftRadius: 3, borderTopRightRadius: 3}}
                     source={{
                         uri: `https://5szczep.pl/images/${item.src}`}}
       />
@@ -81,16 +81,17 @@ const styles = StyleSheet.create({
         maxWidth: '50%',
         height: 150,
         backgroundColor: '#ccc',
-        borderRadius: 10,
-        margin: 4,
+        borderRadius: 5,
+        margin: 2,
         justifyContent: 'flex-end'
     },
 
     textContainer: {
         backgroundColor: '#67B441',
-        borderBottomEndRadius: 10,
-        borderBottomLeftRadius: 10,
-        height: '30%'
+        borderBottomEndRadius: 3,
+        borderBottomLeftRadius: 3,
+        height: '30%',
+        zIndex: 0,
     },
 
     QuizListItemText: {
@@ -100,7 +101,7 @@ const styles = StyleSheet.create({
         paddingTop: 2,
         paddingRight: 8,
         fontSize: 15,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
 
 

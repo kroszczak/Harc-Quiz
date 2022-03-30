@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import QuizScreen from './QuizScreen';
 
 
-const QuizFetch = ({id}) => {
+const QuizFetch = ({id, nav}) => {
     const [isLoading, setLoading] = useState(true);
     const [quiz, setQuiz] = useState([]);
 
@@ -11,6 +11,7 @@ const QuizFetch = ({id}) => {
      try {
       const response = await fetch(`https://5szczep.pl/php/endpoints/Test.php?action=getStandardQuestionWithGivenId&id=${id}`);
       const json = await response.json();
+      console.log(json)
       setQuiz(json);
     } catch (error) {
       console.error(error);
@@ -23,9 +24,9 @@ const QuizFetch = ({id}) => {
     getQuiz();
   }, []);
   return (
-    <View style={{ flex: 1, padding: 24, paddingTop: 5 }}>
+    <View style={{ flex: 1, padding: 24, backgroundColor: '#fff', paddingTop: 5 }}>
       {isLoading ? <ActivityIndicator/> : (
-              <QuizScreen quiz={quiz} j={quiz.length}></QuizScreen>
+              <QuizScreen quiz={quiz} j={quiz.length} nav={nav}></QuizScreen>
           
       )}
     </View>

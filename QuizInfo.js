@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Pressable, Image } from 'react-native'
 import React, {useState} from 'react'
 import QuizFetch from './QuizFetch';
 
-const QuizInfo = ({ route }) => {
+const QuizInfo = ({ route, navigation }) => {
     const { quiz } = route.params;
     const [started, setStarted] = useState(false);
 
@@ -38,7 +38,7 @@ const QuizInfo = ({ route }) => {
         )
     } else {
         return(
-            <QuizFetch id={quiz.id}></QuizFetch>
+            <QuizFetch id={quiz.id} nav={navigation}></QuizFetch>
         )
     }
 }
