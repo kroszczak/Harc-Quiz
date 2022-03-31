@@ -11,7 +11,6 @@ const QuizFetch = ({id, nav}) => {
      try {
       const response = await fetch(`https://5szczep.pl/php/endpoints/Test.php?action=getStandardQuestionWithGivenId&id=${id}`);
       const json = await response.json();
-      console.log(json)
       setQuiz(json);
     } catch (error) {
       console.error(error);
